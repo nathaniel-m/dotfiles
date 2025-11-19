@@ -69,15 +69,25 @@ defaults write com.apple.dock autohide -bool true
 # Don't show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
-# Remove all default apps from Dock (optional - uncomment to use)
-# Requires dockutil: brew install dockutil
-# dockutil --remove all --no-restart
+# Configure Dock with only essential apps
+if command -v dockutil &> /dev/null; then
+    echo "→ Configuring Dock apps..."
 
-# Keep only essential apps (customize this list)
-# dockutil --add "/System/Applications/Launchpad.app" --no-restart
-# dockutil --add "/Applications/Google Chrome.app" --no-restart
-# dockutil --add "/Applications/Visual Studio Code.app" --no-restart
-# dockutil --add "/Applications/iTerm.app" --no-restart
+    # Remove all apps except Finder (Finder can't be removed)
+    dockutil --remove all --no-restart 2>/dev/null
+
+    # Add only the apps we want (in order)
+    dockutil --add "/System/Applications/Utilities/Terminal.app" --no-restart
+    dockutil --add "/Applications/Google Chrome.app" --no-restart
+    dockutil --add "/System/Applications/Safari.app" --no-restart
+    # Note: macOS Screenshot is Cmd+Shift+5 - not a Dock app
+    dockutil --add "/Applications/Visual Studio Code.app" --no-restart
+    dockutil --add "/Applications/Notion.app" --no-restart
+
+    echo "✓ Dock configured"
+else
+    echo "⊘ dockutil not installed - skipping Dock configuration"
+fi
 
 ###############################################################################
 # Keyboard & Trackpad
