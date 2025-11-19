@@ -43,6 +43,7 @@ After that, you'll be set up with SSH for all future git operations!
 5. Optionally apply macOS preferences
 6. Optionally generate SSH key for GitHub
 7. Optionally clone your projects into Herd environments
+8. Optionally set up MySQL databases for your projects
 
 ### What Gets Installed
 
@@ -194,6 +195,33 @@ clone_project "your-org/your-repo" "project-name"
 - Authenticate with GitHub CLI: `gh auth login`
 - Herd will create the ~/Herd directory when installed
 
+## MySQL Database Setup
+
+Automatically create MySQL databases for each project and environment:
+
+```bash
+# Run during installation (it will ask)
+./install.sh
+
+# Or run manually anytime
+./scripts/setup-mysql.sh
+```
+
+**What it creates:**
+- Database for each project (e.g., `fuze_dev`, `fuze_staging`, `fuze_prod`)
+- MySQL user with appropriate permissions
+- Ready-to-use credentials for your `.env` files
+
+**Example credentials (Fuze user):**
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=fuze_dev
+DB_USERNAME=fuze
+DB_PASSWORD=fuze_password
+```
+
 ## Directory Structure
 
 ```
@@ -205,10 +233,12 @@ clone_project "your-org/your-repo" "project-name"
 ├── Brewfile
 ├── install.sh
 ├── README.md
+├── DEVELOPMENT.md          # Developer documentation
 ├── bin/                    # Custom scripts (add to PATH)
 └── scripts/
     ├── setup-ssh.sh        # SSH key generator for GitHub
-    └── clone-projects.sh   # Clone repos based on username
+    ├── clone-projects.sh   # Clone repos based on username
+    └── setup-mysql.sh      # MySQL database setup
 ```
 
 ## Keeping Your Dotfiles Updated

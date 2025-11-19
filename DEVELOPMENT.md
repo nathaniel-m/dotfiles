@@ -45,6 +45,12 @@ Projects are cloned into three environments for each user:
 - Removes all default apps
 - Adds only: Finder, Terminal, Chrome, Safari, Screenshot, VS Code, Notion
 
+### 6. MySQL Database Setup
+- Automated MySQL database creation for each project
+- Creates databases for Dev, Staging, and Production environments
+- Creates MySQL users with appropriate permissions
+- Pre-configured credentials ready for `.env` files
+
 ## File Structure
 
 ```
@@ -60,7 +66,8 @@ dotfiles/
 ├── bin/                    # Custom scripts (added to PATH)
 └── scripts/
     ├── setup-ssh.sh        # SSH key generation
-    └── clone-projects.sh   # User-specific project cloning
+    ├── clone-projects.sh   # User-specific project cloning
+    └── setup-mysql.sh      # MySQL database setup
 ```
 
 ## Brewfile Contents
@@ -116,6 +123,40 @@ DetectiveHQ/faq-client
 DetectiveHQ/detectivehq.com
 ```
 
+## MySQL Databases
+
+Each user gets MySQL databases for each project and environment:
+
+### Fuze
+- **User**: `fuze` / **Password**: `fuze_password`
+- **Databases**:
+  - `fuze_dev`, `fuze_staging`, `fuze_prod`
+  - `fuze_post_purchase_dev`, `fuze_post_purchase_staging`, `fuze_post_purchase_prod`
+  - `fullfuze_dev`, `fullfuze_staging`, `fullfuze_prod`
+
+### ReRank
+- **User**: `rerank` / **Password**: `rerank_password`
+- **Databases**:
+  - `rerank_dev`, `rerank_staging`, `rerank_prod`
+  - `rerankseo_dev`, `rerankseo_staging`, `rerankseo_prod`
+
+### RapidHover
+- **User**: `rapidhover` / **Password**: `rapidhover_password`
+- **Databases**:
+  - `rapidhover_cdn_dev`, `rapidhover_cdn_staging`, `rapidhover_cdn_prod`
+  - `rapidhover_backend_dev`, `rapidhover_backend_staging`, `rapidhover_backend_prod`
+  - `rapidhover_com_dev`, `rapidhover_com_staging`, `rapidhover_com_prod`
+
+### DetectiveFAQ
+- **User**: `detectivefaq` / **Password**: `detective_password`
+- **Databases**:
+  - `faq_admin_dev`, `faq_admin_staging`, `faq_admin_prod`
+  - `faq_backend_dev`, `faq_backend_staging`, `faq_backend_prod`
+  - `faq_api_dev`, `faq_api_staging`, `faq_api_prod`
+  - `faq_widget_dev`, `faq_widget_staging`, `faq_widget_prod`
+  - `faq_client_dev`, `faq_client_staging`, `faq_client_prod`
+  - `detectivehq_dev`, `detectivehq_staging`, `detectivehq_prod`
+
 ## Technical Decisions
 
 ### Why Lowercase Usernames?
@@ -133,7 +174,8 @@ Keeps configuration simple and fast. Users can extend with `~/.zshrc.local` for 
 ### Why Separate Scripts?
 - `setup-ssh.sh` - Can be run independently
 - `clone-projects.sh` - Can be run independently
-- Modular = easier to maintain
+- `setup-mysql.sh` - Can be run independently
+- Modular = easier to maintain and test
 
 ### Why Not Oh-My-Zsh by Default?
 - Adds complexity
@@ -206,6 +248,7 @@ alias myalias="command"
 7. Asks: Apply macOS preferences? (optional)
 8. Asks: Generate SSH key? (optional)
 9. Asks: Clone projects? (optional, user-specific)
+10. Asks: Set up MySQL databases? (optional, user-specific)
 
 ## Common Issues & Solutions
 
