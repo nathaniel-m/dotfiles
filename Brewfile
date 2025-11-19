@@ -39,6 +39,7 @@ brew "redis"
 brew "fzf"                   # Fuzzy file finder
 brew "ripgrep"               # Fast search (better than grep)
 brew "mas"                   # Mac App Store CLI
+brew "dockutil"              # Manage Dock items
 
 # ============================================================================
 # Applications

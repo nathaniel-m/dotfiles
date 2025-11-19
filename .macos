@@ -69,6 +69,16 @@ defaults write com.apple.dock autohide -bool true
 # Don't show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
+# Remove all default apps from Dock (optional - uncomment to use)
+# Requires dockutil: brew install dockutil
+# dockutil --remove all --no-restart
+
+# Keep only essential apps (customize this list)
+# dockutil --add "/System/Applications/Launchpad.app" --no-restart
+# dockutil --add "/Applications/Google Chrome.app" --no-restart
+# dockutil --add "/Applications/Visual Studio Code.app" --no-restart
+# dockutil --add "/Applications/iTerm.app" --no-restart
+
 ###############################################################################
 # Keyboard & Trackpad
 ###############################################################################
