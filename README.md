@@ -16,24 +16,33 @@ Personal dotfiles for setting up a new Mac for PHP/Laravel and Node.js developme
 
 ## Quick Start
 
-### Fresh Mac Setup
+### Fresh Mac Setup (No SSH Key Yet)
 
 ```bash
-# Clone this repo
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.dotfiles
+# Clone using HTTPS (no SSH key needed)
+git clone https://github.com/nathaniel-m/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # Run the installer
 ./install.sh
 ```
 
-The installer will:
+During installation, say **yes** when asked to generate an SSH key. The script will:
+- Generate your SSH key
+- Copy it to your clipboard
+- Give you instructions to paste it into GitHub
+
+After that, you'll be set up with SSH for all future git operations!
+
+### What the Installer Does
+
 1. Install Homebrew (if needed)
 2. Install packages from Brewfile
 3. Create symlinks for dotfiles
 4. Set zsh as default shell
 5. Optionally apply macOS preferences
 6. Optionally generate SSH key for GitHub
+7. Optionally clone your projects into Herd environments
 
 ### What Gets Installed
 
