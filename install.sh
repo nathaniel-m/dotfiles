@@ -191,6 +191,27 @@ else
 fi
 
 ###############################################################################
+# MySQL Database Setup
+###############################################################################
+
+print_section "Set up MySQL databases for $(whoami)"
+
+echo ""
+read -p "Create MySQL databases for your projects? (y/n) " -n 1 -r
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    if [ -f "$DOTFILES_DIR/scripts/setup-mysql.sh" ]; then
+        chmod +x "$DOTFILES_DIR/scripts/setup-mysql.sh"
+        "$DOTFILES_DIR/scripts/setup-mysql.sh"
+    else
+        print_warning "MySQL setup script not found"
+    fi
+else
+    print_warning "Skipping MySQL setup (you can run scripts/setup-mysql.sh later)"
+fi
+
+###############################################################################
 # Done
 ###############################################################################
 
