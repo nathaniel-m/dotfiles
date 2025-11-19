@@ -77,7 +77,7 @@ clone_project() {
 
 # Clone projects based on username
 case $(whoami) in
-    "Fuze")
+    "fuze")
         echo -e "${BLUE}Setting up Fuze projects in Herd...${NC}\n"
 
         clone_project "FuzeUpsell/fuze" "fuze"
@@ -85,14 +85,14 @@ case $(whoami) in
         clone_project "TrinityRiverSoftware/fullfuze.com" "fullfuze.com"
         ;;
 
-    "ReRank")
+    "rerank")
         echo -e "${BLUE}Setting up ReRank projects in Herd...${NC}\n"
 
         clone_project "RerankSEO/rerank" "rerank"
         clone_project "TrinityRiverSoftware/rerankseo.com" "rerankseo.com"
         ;;
 
-    "RapidHover")
+    "rapidhover")
         echo -e "${BLUE}Setting up RapidHover projects in Herd...${NC}\n"
 
         clone_project "RapidHover/images-cdn" "images-cdn"
@@ -100,7 +100,7 @@ case $(whoami) in
         clone_project "TrinityRiverSoftware/rapidhover.com" "rapidhover.com"
         ;;
 
-    "DetectiveFAQ")
+    "detectivefaq")
         echo -e "${BLUE}Setting up DetectiveFAQ projects in Herd...${NC}\n"
 
         clone_project "DetectiveHQ/faq-admin" "faq-admin"
