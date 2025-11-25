@@ -55,6 +55,14 @@ if ! command -v brew &> /dev/null; then
     print_success "Homebrew installed"
 else
     print_success "Homebrew already installed"
+
+    # Check if current user can write to Homebrew directories (multi-user support)
+    BREW_PREFIX="$(brew --prefix)"
+    if [ -d "$BREW_PREFIX" ] && [ ! -w "$BREW_PREFIX" ]; then
+        print_warning "Fixing Homebrew permissions for user $(whoami)..."
+        sudo chown -R $(whoami) "$BREW_PREFIX"
+        print_success "Homebrew permissions fixed"
+    fi
 fi
 
 ###############################################################################
